@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+
+  jupyter:
+    image: jupyter/scipy-notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/home/jovyan/
+
+  pythia:
+    build: events
+    command: python /event_api/event_api.py
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./events/event_api:/event_api
