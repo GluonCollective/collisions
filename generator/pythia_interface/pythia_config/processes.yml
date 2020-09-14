@@ -1,0 +1,41 @@
+SoftQCD: 
+  - "SoftQCD:all"
+
+HardQCD: 
+  - "HardQCD:all"
+
+Electroweak:
+  - "PromptPhoton:all"
+  - "WeakBosonExchange:all"
+  - "WeakSingleBoson:al"
+  - "WeakDoubleBoson:all"
+  - "WeakBosonAndParton:all"
+  - "PhotonParton:all"
+
+Onia:
+  - "Onia:all"
+
+Top:
+  - "Top:all"
+
+FourthGeneration: 
+  - "FourthBottom:all"
+  - "FourthTop:all"
+
+HiggsSM: 
+  - "HiggsSM:all"
+
+HiggsBSM: 
+  - "Higgs:useBSM"
+  - "HiggsBSM:all"
+
+SUSY:
+  - "SUSY:all"
+
+ExtraDimensions:
+  - "ExtraDimensionsG*:all"
+
+DarkMatter:
+  - "DM:gg2S2XX"
+  - "DM:ffbar2Zp2XX"
+  - "DM:qqbar2DY"

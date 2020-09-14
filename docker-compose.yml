@@ -8,10 +8,9 @@ services:
     volumes:
       - ./:/home/jovyan/
 
-  pythia:
-    build: events
-    command: python /event_api/event_api.py
+  generator:
+    build: generator
     ports:
       - "5000:5000"
     volumes:
-      - ./events/event_api:/event_api
+      - ./generator/rest_api:/rest_api

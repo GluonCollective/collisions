@@ -1,10 +1,9 @@
 #ifndef COLLISIONS_CONFIG_H_
 #define COLLISIONS_CONFIG_H_
+#include <iostream>
 #include <map>
 #include <string>
 #include <vector>
-#include <iostream>
-
 
 #include "Pythia8/Pythia.h"
 #include "boost/program_options.hpp"
@@ -14,13 +13,15 @@ namespace config {
 /* Given the variables to save the process, the seed and the number of events;
  * and the main program number of arguments and argument values, configures the
  * generation of the events. */
-int ConfigureProgram(std::string &process, int &seed, int &n_events, int argc,
-                     char **argv);
+bool ConfigureProgram(std::string &process, int &seed, int &n_events, int argc,
+                     char **argvm);
 
 /* Configuration for the physics processes */
 class Configuration {
  public:
-  Configuration();
+  /* Loads the possible configurations from the yaml file. The file should be
+   * located in the /event_api folder, so the user can change it easily. */
+  explicit Configuration(std::string config_file = "/pythia_config/processes.yml");
 
   /* Returns a list with the valid physics processes. */
   const std::vector<std::string> &GetValidProcesses() const {
@@ -43,7 +44,7 @@ class Configuration {
  private:
   /* Map with the name of the option in the program and the corresponding
    * option on pythia */
-  const std::map<std::string, std::vector<std::string>> process_options_;
+  std::map<std::string, std::vector<std::string>> process_options_;
 
   /* List of the valid options */
   std::vector<std::string> valid_process_;
@@ -54,10 +55,6 @@ class Configuration {
 void ConfigurePythia(Pythia8::Pythia &pythia,
                      const std::vector<std::string> &processes, int seed);
 
-void WriteOptionsToCSV() {
-  std::ostream csv;
-  csv.open("/tmp/process.csv");
-}
 }  // namespace config
 }  // namespace collisions
 

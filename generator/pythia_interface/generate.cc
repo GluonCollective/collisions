@@ -5,7 +5,6 @@
 #include <string>
 #include <stdexcept>
 
-namespace po = boost::program_options;
 namespace cfg = collisions::config;
 namespace opt = collisions::output;
 
@@ -14,10 +13,10 @@ int main(int argc, char **argv) {
   int seed;
   int n_events;
 
-  int exit_code = cfg::ConfigureProgram(process, seed, n_events, argc, argv);
+  bool run = cfg::ConfigureProgram(process, seed, n_events, argc, argv);
 
-  if (exit_code != 0) {
-    return exit_code;
+  if (!run) {
+    return 0;
   }
 
   std::ofstream particles;
@@ -28,7 +27,7 @@ int main(int argc, char **argv) {
   mothers.open("/tmp/mothers.csv");
   daughters.open("/tmp/daughters.csv");
 
-  particles << "event,id,E,Px,Py,Pz,Vx,Vy,Vz,Vt\n";
+  particles << "event,id,PdgCode,E,Px,Py,Pz,Vx,Vy,Vz,Vt\n";
   mothers << "event,id,mother_id\n";
   daughters << "event,id,daughter_id\n";
 
@@ -58,6 +57,7 @@ void opt::save_event(const Pythia8::Event &event,
     const auto &part = event[i];
     particles << event_id << ",";
     particles << i << ",";
+    particles << part.id() << ",";
     particles << part.e() << ",";
     particles << part.px() << "," << part.py() << "," << part.pz() << ",";
     particles << part.xProd() << "," << part.yProd() << "," << part.zProd()
