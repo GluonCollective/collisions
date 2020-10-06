@@ -11,6 +11,7 @@ services:
 
   generator:
     build: generator
+    cache_from: gluoncollective/collisions:latest
     ports:
       - "5000:5000"
     volumes:
