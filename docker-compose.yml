@@ -10,8 +10,9 @@ services:
       - ./:/home/jovyan/
 
   generator:
-    build: generator
-    cache_from: gluoncollective/collisions:latest
+    build: 
+      context: generator
+      cache_from: [gluoncollective/collisions:latest]
     ports:
       - "5000:5000"
     volumes:
