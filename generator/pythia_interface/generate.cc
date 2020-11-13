@@ -27,9 +27,9 @@ int main(int argc, char **argv) {
   mothers.open("/tmp/mothers.csv");
   daughters.open("/tmp/daughters.csv");
 
-  particles << "event,id,PdgCode,E,Px,Py,Pz,Vx,Vy,Vz,Vt\n";
-  mothers << "event,id,mother_id\n";
-  daughters << "event,id,daughter_id\n";
+  particles << "Event,Id,PdgCode,E,Px,Py,Pz,Vx,Vy,Vz,Vt\n";
+  mothers << "Event,Id,MotherId\n";
+  daughters << "Event,Id,DaughterId\n";
 
   // Set up Pythia
   Pythia8::Pythia pythia;
